@@ -57,33 +57,63 @@
 
 					<!-- Post -->
 					<section class="post">
-						<p><h2 id="time-table-in-kst">Time Table (in KST)</h2>
+						<p><div>
+<h2 style="display: inline;">Time Table</h2> &nbsp;&nbsp;
+ <select name="timezones" id="timezones" onchange="timesetting(this.value)" style="width : 30%; display: inline;">
+    <option value="9">in KST</option>
+    <option value="-12">UTC -12</option>
+    <option value="-11">UTC -11</option>
+    <option value="-10">UTC -10</option>
+    <option value="-9">UTC -9</option>
+    <option value="-8">UTC -8</option>
+    <option value="-7">UTC -7</option>
+    <option value="-6">UTC -6</option>
+    <option value="-5">UTC -5</option>
+    <option value="-4">UTC -4</option>
+    <option value="-3">UTC -3</option>
+    <option value="-2">UTC -2</option>
+    <option value="-1">UTC -1</option>
+    <option value="0">UTC +0</option>
+    <option value="1">UTC +1</option>
+    <option value="2">UTC +2</option>
+    <option value="3">UTC +3</option>
+    <option value="4">UTC +4</option>
+    <option value="5">UTC +5</option>
+    <option value="6">UTC +6</option>
+    <option value="7">UTC +7</option>
+    <option value="8">UTC +8</option>
+    <option value="9">UTC +9 (KST)</option>
+    <option value="10">UTC +10</option>
+    <option value="11">UTC +11</option>
+    <option value="12">UTC +12</option>
+</select>
+</div>
 <p><br /></p>
 
 <table>
   <tbody>
     <tr>
       <td> </td>
-      <td>Feb. 17(Thu)</td>
-      <td>Feb. 18(Fri)</td>
+      <td><span id="firstday">Feb. 17(Thu)</span></td>
+      <td><span id="secondday">Feb. 18(Fri)</span></td>
     </tr>
     <tr>
-      <td>15:00 - 15:50</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:00 - 16:50</td>
+      <td><span id="s1t1">06:00</span> - <span id="s1t2">06:50</span></td>
       <td> </td>
       <td> </td>
     </tr>
     <tr>
-      <td>17:00 - 17:50</td>
+      <td><span id="s2t1">07:00</span> - <span id="s2t2">07:50</span></td>
       <td> </td>
       <td> </td>
     </tr>
     <tr>
-      <td>18:00 - 18:50</td>
+      <td><span id="s3t1">08:00</span> - <span id="s3t2">08:50</span></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><span id="s4t1">09:00</span> - <span id="s4t2">09:50</span></td>
       <td> </td>
       <td> </td>
     </tr>
@@ -96,6 +126,46 @@
 <p><br /></p>
 
 <h3 id="tba">TBA</h3>
+
+<script>
+    function timesetting(value){
+        ref = [6,7,8,9];
+        $("#timezones").val(value).prop("selected", true);
+        if (ref[0] + Number(value) < 0){
+            add = 24;
+            $("#firstday")[0].innerText = "Feb. 16(Wed)";
+            $("#secondday")[0].innerText = "Feb. 17(Thu)";
+        } else {
+            add = 0;
+            $("#firstday")[0].innerText = "Feb. 17(Thu)";
+            $("#secondday")[0].innerText = "Feb. 18(Fri)";
+        }
+        for (let i=1; i<5; i++){
+            for (let j=1; j<3; j++){
+                id = "#s"+i+"t"+j;
+                hours = ref[i-1] + Number(value) + add;
+                $(id)[0].innerText = ("0"+String(hours)).slice(-2)+$(id)[0].innerText.slice(-3);
+            }    
+        }
+    }
+</script>
+
+<style>
+table td {
+    text-align: center;
+    border : 1px solid;
+}
+table td:first-of-type {
+    width:  20%;
+}
+select {
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    line-height: 1.3;
+}
+</style>
+
 </p>
 					</section>
 
