@@ -94,11 +94,11 @@ This workshop is sponsored by National Research Foundation of Korea.
 {:style="text-align : center;"}
 -->
 
-<!-- 
+<!--  
 <script>
     window.onload = function(){ 
         $("#intro")[0].innerHTML = 
-        `<video id="bgvideo" playsinline muted autoplay loop>
+        `<video id="bgvideo" playsinline muted autoplay loop controls>
     <source src="/2022SWCGA/images/snu_mov.mp4" type="video/mp4">
 </video>` + $("#intro")[0].innerHTML;
     };
@@ -108,9 +108,9 @@ This workshop is sponsored by National Research Foundation of Korea.
 video#bgvideo {
     width: 100%;
     height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0%;
+    left: 0%;
+    //transform: translate(-50%, -50%);
     position: absolute;
     z-index: -1;
     object-fit: cover;
