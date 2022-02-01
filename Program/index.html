@@ -99,23 +99,23 @@
     </tr>
     <tr>
       <td><span id="s1t1">15:00</span> - <span id="s1t2">15:50</span></td>
-      <td> </td>
-      <td> </td>
+      <td><span class="talkinfo-open"></span></td>
+      <td><span class="talkinfo-open"></span></td>
     </tr>
     <tr>
       <td><span id="s2t1">16:00</span> - <span id="s2t2">16:50</span></td>
-      <td> </td>
-      <td> </td>
+      <td><span class="talkinfo-open"></span></td>
+      <td><span class="talkinfo-open"></span></td>
     </tr>
     <tr>
       <td><span id="s3t1">17:00</span> - <span id="s3t2">17:50</span></td>
-      <td> </td>
-      <td> </td>
+      <td><span class="talkinfo-open"></span></td>
+      <td><span class="talkinfo-open"></span></td>
     </tr>
     <tr>
       <td><span id="s4t1">18:00</span> - <span id="s4t2">18:50</span></td>
-      <td> </td>
-      <td> </td>
+      <td><span class="talkinfo-open"></span></td>
+      <td><span class="talkinfo-open"></span></td>
     </tr>
   </tbody>
 </table>
@@ -127,7 +127,25 @@
 
 <h3 id="tba">TBA</h3>
 
+<div class="modal-wrapper">
+</div>
+<div class="modal">
+    <div class="talkinfo-close"></div>
+    <div class="clear"></div>
+    <div class="content">
+        <strong></strong> <br />
+        <p></p>
+        <em></em> <br />
+        <p></p>
+    </div>
+  </div>
+
 <script>
+
+    var dictSpeakers = {}
+
+    //dictSpeakers['Speaker'] = ['Title', 'Abstract'];
+
     function timesetting(value){
         ref = [6,7,8,9];
         $("#timezones").val(value).prop("selected", true);
@@ -148,12 +166,40 @@
             }    
         }
     }
-    window.onload = timesetting("9");
+    window.onload = function(){
+        timesetting("9");
+        $(document).ready(function() {
+  
+            $('.talkinfo-open').click(function() {
+                var speaker = $(this)[0].innerText;
+                $('.modal strong')[0].innerText = 'Speaker : ' + speaker;
+                //$('.modal p')[0].innerText = 'Time : ' + $(this).parent().siblings()[0].innerText;
+                $('.modal em')[0].innerText = 'Title : ' + dictSpeakers[speaker][0];
+                $('.modal p')[1].innerText = 'Abstract : ' + dictSpeakers[speaker][1];
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, "modal"]);
+                $('.talkinfo-open').parent().prevAll()[0].innerText
+                $('.modal-wrapper').addClass('open');
+                $('.modal').addClass('open');
+            });
+          
+            $('.talkinfo-close').click(function() {
+                $('.modal-wrapper').removeClass('open');
+            $('.modal').removeClass('open');
+            });
+          
+          $('.modal-wrapper').click(function() {
+            $('.modal-wrapper').removeClass('open');
+            $('.modal').removeClass('open');
+          })
+          
+        });
+    };
 </script>
 
 <style>
 table td {
     text-align: center;
+    vertical-align: middle;
     border : 1px solid;
 }
 table td:first-of-type {
@@ -169,6 +215,131 @@ select {
 html {
     scroll-behavior: smooth;
 }
+
+.talkinfo-open {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.talkinfo-close {
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  //margin: 3px;
+  width: 2rem;
+  height: 2rem;
+  -webkit-transform: translate(-50%, -150%);
+  -moz-transform: translate(-50%, -150%);
+  -o-transform: translate(-50%, -150%);
+  transform: translate(-50%, -150%);
+}
+
+.clear{
+    clear: both;
+}
+.talkinfo-close::before,
+.talkinfo-close::after {
+  content: '';
+  height: 4px;
+  width: 2rem;
+  display: block;
+  background: #d6d6d6;
+}
+
+.talkinfo-close::before {
+  margin-top: 10px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.talkinfo-close::after {
+  margin-top: -4px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.talkinfo-close:hover:after, .talkinfo-close:hover:before {
+  background: #FF8CB4;
+}
+.modal-wrapper {
+    display: flex;
+    // line-height: 125vh;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    background: rgba(25, 18, 12, 0.3);
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-wrapper.open{
+        z-index: 999;
+        visibility: visible;
+        opacity: 1;
+        filter: alpha(opacity=1);
+}
+
+.modal {
+  z-index: -1;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+    display: inline-block;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 70%;
+  white-space: nowrap;
+    margin: auto;
+    background: #e8e8e8;
+    background: -webkit-linear-gradient(bottom, #e8e8e8, #fff);
+    background: -o-linear-gradient(bottom, #e8e8e8, #fff);
+    background: linear-gradient(to top, #e8e8e8, #fff);
+    box-shadow: 0px 1rem 1rem -0.5rem rgba(47, 46, 38, 0.5);
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -ms-transform: scale(0.7); /* IE 9 */
+  -webkit-transform: scale(0.7); /* Safari */
+  transform: scale(0.7);
+  -ms-transform: translate(-50%, -50%); /* IE 9 */
+  -webkit-transform: translate(-50%, -50%); /* Safari */
+  transform: translate(-50%, -50%);
+}
+
+.modal.open {
+    z-index: 1000;
+    opacity: 1;
+    filter: alpha(opacity=100);
+
+  -ms-transform: scale(1); /* IE 9 */
+  -webkit-transform: scale(1); /* Safari */
+  transform: scale(1);
+  -ms-transform: translate(-50%, -50%); /* IE 9 */
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+}
+/*
+.content{
+    text-align: left;
+}*/
 </style>
 
 </p>
@@ -247,7 +418,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   });
 </script>
 <script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 	</body>
