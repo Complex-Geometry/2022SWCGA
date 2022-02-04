@@ -125,18 +125,36 @@
 <h2 id="abstracts">Abstracts</h2>
 <p><br /></p>
 
-<h3 id="tba">TBA</h3>
+<h2 id="lucas-kaufmann">Lucas Kaufmann</h2>
 
+<p><strong>Title : Monge-Ampère operators via intersection theory of currents</strong></p>
+
+<p>Abstract : Given a p.s.h. function $u$, it is important in many situations to give a reasonable meaning to the Monge-Ampère operator $\mathrm{MA}(u)$. Several definitions of such operators exist and they all coincide for “nice” $u$.</p>
+
+<p>In this talk I aim to revisit this problem from the point of view of the intersection theory of currents. I will recall recent notions of intersection and their relations with various definitions of the Monge-Ampère operator. This is based on joint works with D.-T. Huynh (Chinese Academy of Sciences) and D.-V. Vu (Cologne).</p>
+
+<p><br /></p>
+
+<h2 id="ngoc-cuong-nguyen">Ngoc Cuong Nguyen</h2>
+
+<p><strong>Title : The Dirichlet problem for the Monge-Ampère equation on Hermitian manifolds with boundary</strong></p>
+
+<p>Abstract : This is joint work with Sławomir Kołodziej. We study weak quasi-plurisubharmonic
+solutions to the Dirichlet problem for the complex Monge-Ampère equation on a general Hermitian
+manifold with non-empty boundary. We prove optimal subsolution theorems: for bounded and
+Hölder continuous quasi-plurisubharmonic functions. The continuity of the solution is proved for
+measures that well dominated by capacity, for example measures with $L^p$, $p &gt; 1$ densities, or
+moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
 <div class="modal-wrapper">
 </div>
 <div class="modal">
     <div class="talkinfo-close"></div>
     <div class="clear"></div>
     <div class="content">
-        <strong></strong> <br />
-        <p></p>
-        <em></em> <br />
-        <p></p>
+        <strong class="speaker"></strong> <br /><br />
+        <p class="time"></p>
+        <em class="title"></em> <br /><br />
+        <p class="abstract"></p>
     </div>
   </div>
 
@@ -145,6 +163,15 @@
     var dictSpeakers = {}
 
     //dictSpeakers['Speaker'] = ['Title', 'Abstract'];
+    dictSpeakers['Lucas Kaufmann'] = [
+        'Monge-Ampère operators via intersection theory of currents',
+        `Given a p.s.h. function $u$, it is important in many situations to give a reasonable meaning to the Monge-Ampère operator $\\mathrm{MA}(u)$. Several definitions of such operators exist and they all coincide for "nice" $u$.
+        In this talk I aim to revisit this problem from the point of view of the intersection theory of currents. I will recall recent notions of intersection and their relations with various definitions of the Monge-Ampère operator. This is based on joint works with D.-T. Huynh (Chinese Academy of Sciences) and D.-V. Vu (Cologne).`
+        ];
+    
+    dictSpeakers['Ngoc Cuong Nguyen'] = [
+        'The Dirichlet problem for the Monge-Ampère equation on Hermitian manifolds with boundary', 
+        `This is joint work with Sławomir Kołodziej. We study weak quasi-plurisubharmonic solutions to the Dirichlet problem for the complex Monge-Ampère equation on a general Hermitian manifold with non-empty boundary. We prove optimal subsolution theorems: for bounded and Hölder continuous quasi-plurisubharmonic functions. The continuity of the solution is proved for measures that well dominated by capacity, for example measures with $L^p$, $p > 1$ densities, or moderate measures in the sense of Dinh-Nguyen-Sibony.`];
 
     function timesetting(value){
         ref = [6,7,8,9];
@@ -172,10 +199,10 @@
   
             $('.talkinfo-open').click(function() {
                 var speaker = $(this)[0].innerText;
-                $('.modal strong')[0].innerText = 'Speaker : ' + speaker;
+                $('.modal .speaker')[0].innerText = 'Speaker : ' + speaker;
                 //$('.modal p')[0].innerText = 'Time : ' + $(this).parent().siblings()[0].innerText;
-                $('.modal em')[0].innerText = 'Title : ' + dictSpeakers[speaker][0];
-                $('.modal p')[1].innerText = 'Abstract : ' + dictSpeakers[speaker][1];
+                $('.modal .title')[0].innerText = 'Title : ' + dictSpeakers[speaker][0];
+                $('.modal .abstract')[0].innerText = 'Abstract : ' + dictSpeakers[speaker][1];
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub, "modal"]);
                 $('.talkinfo-open').parent().prevAll()[0].innerText
                 $('.modal-wrapper').addClass('open');
@@ -301,8 +328,8 @@ html {
     position: absolute;
   top: 50%;
   left: 50%;
-  min-width: 70%;
-  white-space: nowrap;
+  min-width: 80%;
+  //white-space: nowrap;
     margin: auto;
     background: #e8e8e8;
     background: -webkit-linear-gradient(bottom, #e8e8e8, #fff);
