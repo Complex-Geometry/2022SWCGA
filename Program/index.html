@@ -162,7 +162,9 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
 
   <h2 id="hoseob-seo-seoul-national-university-korea">Hoseob Seo (Seoul National University, Korea)</h2>
 
-  <p><strong>TBA</strong></p>
+  <p><strong>Title : On equisingular approximation of plurisubharmonic functions</strong></p>
+
+  <p>Abstract : After Demailly-Peternell-Schneider’s equisingular approximation, it is a natural question to ask which plurisubharmonic functions admit a ‘nice’ approximation in the sense of a decreasing equisingular approximation with analytic singularities. In this talk, we give a criterion for admitting a nice approximation with toric approximants for toric plurisubharmonic functions. Our results are motivated by a recent result of Guan for toric plurisubharmonic functions of the diagonal type. This is joint work with Jongbong An.</p>
 
   <p><br /></p>
 
@@ -188,7 +190,6 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
 
 <div class="modal-wrapper">
 </div>
-<div class="container">
 <div class="modal">
     <div class="talkinfo-close"></div>
     <div class="clear"></div>
@@ -198,7 +199,6 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
         <em class="title"></em> <br /><br />
         <p class="abstract"></p>
     </div>
-</div>
 </div>
 
 <script>
@@ -225,6 +225,12 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
 
         The considerations are motivated by a problem on when two given psh functions can be connected by a psh geodesic.`,
         'University of Stavanger, Norway'
+    ];
+
+    dictSpeakers['Hoseob Seo'] = [
+        'On equisingular approximation of plurisubharmonic functions',
+        `After Demailly-Peternell-Schneider's equisingular approximation, it is a natural question to ask which plurisubharmonic functions admit a 'nice' approximation in the sense of a decreasing equisingular approximation with analytic singularities. In this talk, we give a criterion for admitting a nice approximation with toric approximants for toric plurisubharmonic functions. Our results are motivated by a recent result of Guan for toric plurisubharmonic functions of the diagonal type. This is joint work with Jongbong An.`,
+        'Seoul National University, Seoul'
     ];
 
     dictSpeakers['Zheng Yuan'] = [
@@ -284,6 +290,11 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
 </script>
 
 <style>
+
+table {
+    table-layout: fixed;
+}
+
 table td {
     text-align: center;
     vertical-align: middle;
@@ -292,6 +303,7 @@ table td {
 table td:first-of-type {
     width:  25%;
 }
+
 select {
     font-family: "Source Sans Pro", Helvetica, sans-serif;
     font-weight: 900;
@@ -379,18 +391,16 @@ html {
 }
 
 .modal {
-  z-index: -1;
+    z-index: -1;
     padding-left: 1rem;
     padding-right: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     display: inline-block;
     position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: inherit;
-  //max-width: 100%;
-  //white-space: nowrap;
+    top: 50%;
+    left: 50%;
+    width: 70%;
     margin: auto;
     background: #e8e8e8;
     background: -webkit-linear-gradient(bottom, #e8e8e8, #fff);
@@ -404,33 +414,35 @@ html {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     -ms-transform: scale(0.7); /* IE 9 */
-  -webkit-transform: scale(0.7); /* Safari */
-  transform: scale(0.7);
-  -ms-transform: translate(-50%, -50%); /* IE 9 */
-  -webkit-transform: translate(-50%, -50%); /* Safari */
-  transform: translate(-50%, -50%);
+    -webkit-transform: scale(0.7); /* Safari */
+    transform: scale(0.7);
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Safari */
+    transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width: 980px) {
+        .modal {
+            width: 100%;
+        }
+    }
 
 .modal.open {
     z-index: 1000;
     opacity: 1;
     filter: alpha(opacity=100);
 
-  -ms-transform: scale(1); /* IE 9 */
-  -webkit-transform: scale(1); /* Safari */
-  transform: scale(1);
-  -ms-transform: translate(-50%, -50%); /* IE 9 */
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Safari */
+    transform: scale(1);
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
 }
 
 .content {
     line-height: 1.7;
-}
-
-.container {
-    min-width: 70%;
 }
 </style>
 
