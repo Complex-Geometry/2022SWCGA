@@ -277,7 +277,8 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
         $(document).ready(function() {
   
             $('.talkinfo-open').click(function() {
-                var speaker = $(this)[0].innerText;
+                // var speaker = $(this)[0].innerText;
+                var speaker = $(this).attr('speaker');
                 $('.modal .speaker')[0].innerText = 'Speaker : ' + speaker + ' (' + dictSpeakers[speaker][2] + ')';
                 //$('.modal p')[0].innerText = 'Time : ' + $(this).parent().siblings()[0].innerText;
                 $('.modal .title')[0].innerText = 'Title : ' + dictSpeakers[speaker][0];
