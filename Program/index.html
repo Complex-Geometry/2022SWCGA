@@ -99,23 +99,23 @@
     </tr>
     <tr>
       <td><span id="s1t1">15:00</span> - <span id="s1t2">15:50</span></td>
-      <td><span class="talkinfo-open"></span></td>
-      <td><span class="talkinfo-open"></span></td>
+      <td><span class="talkinfo-open" speaker="Ngoc Cuong Nguyen">Ngoc Cuong Nguyen</span></td>
+      <td><span class="talkinfo-open" speaker="Lucas Kaufmann">Lucas Kaufmann</span></td>
     </tr>
     <tr>
       <td><span id="s2t1">16:00</span> - <span id="s2t2">16:50</span></td>
-      <td><span class="talkinfo-open"></span></td>
-      <td><span class="talkinfo-open"></span></td>
+      <td><span class="talkinfo-open" speaker="Zheng Yuan">Zheng Yuan</span></td>
+      <td><span class="talkinfo-open" speaker="Hoseob Seo">Hoseob Seo (<span class="stime"><span class="talktime" ref="7">16:00</span> - <span class="talktime" ref="7">16:30</span></span>)</span></td>
     </tr>
     <tr>
       <td><span id="s3t1">17:00</span> - <span id="s3t2">17:50</span></td>
-      <td><span class="talkinfo-open"></span></td>
-      <td><span class="talkinfo-open"></span></td>
+      <td><span class="talkinfo-open" speaker="Xiaojun Wu">Xiaojun Wu</span></td>
+      <td><span class="talkinfo-open" speaker="Xu Wang">Xu Wang</span></td>
     </tr>
     <tr>
       <td><span id="s4t1">18:00</span> - <span id="s4t2">18:50</span></td>
       <td><span class="talkinfo-open"></span></td>
-      <td><span class="talkinfo-open"></span></td>
+      <td><span class="talkinfo-open" speaker="Alexander Rashkovskii">Alexander Rashkovskii</span></td>
     </tr>
   </tbody>
 </table>
@@ -180,7 +180,9 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
 
   <h2 id="xiaojun-wu-university-of-bayreuth-germany">Xiaojun Wu (University of Bayreuth, Germany)</h2>
 
-  <p><strong>TBA</strong></p>
+  <p><strong>Title : Pseudo-effective vector bundle and numerical flatness</strong></p>
+
+  <p>Abstract : In this talk, I will discuss the generalisation of the notion of pseudo-effective line bundle to the higher rank case. In particular, I will talk about the proof of the following result: a strongly pseudo-effective vector bundle over a compact Kähler manifold with vanishing first Chern class is numerically trivial. The proof is based on a natural construction of closed positive current in the first Chern class called Segre current. The projective case of this result has been proven by Campana-Cao-Matsumura and Hosono-Iwai-Matsumura. As a geometric application, the tangent bundle or cotangent bundle of a Calabi-Yau manifold or a symplectic irreducible holomorphic manifold is not strongly pseudo-effective. If times permits, I will talk about some more recent work.</p>
 
   <p><br /></p>
 
@@ -209,7 +211,7 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
 
     var dictSpeakers = {}
 
-    //dictSpeakers['Speaker'] = ['Title', 'Abstract'];
+    //dictSpeakers['Speaker'] = ['Title', 'Abstract', 'Affiliation'];
     dictSpeakers['Lucas Kaufmann'] = [
         'Monge-Ampère operators via intersection theory of currents',
         `Given a p.s.h. function $u$, it is important in many situations to give a reasonable meaning to the Monge-Ampère operator $\\mathrm{MA}(u)$. Several definitions of such operators exist and they all coincide for "nice" $u$.
@@ -246,6 +248,12 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
 
     ];
 
+    dictSpeakers['Xiaojun Wu'] = [
+        'Pseudo-effective vector bundle and numerical flatness',
+        `In this talk, I will discuss the generalisation of the notion of pseudo-effective line bundle to the higher rank case. In particular, I will talk about the proof of the following result: a strongly pseudo-effective vector bundle over a compact Kähler manifold with vanishing first Chern class is numerically trivial. The proof is based on a natural construction of closed positive current in the first Chern class called Segre current. The projective case of this result has been proven by Campana-Cao-Matsumura and Hosono-Iwai-Matsumura. As a geometric application, the tangent bundle or cotangent bundle of a Calabi-Yau manifold or a symplectic irreducible holomorphic manifold is not strongly pseudo-effective. If times permits, I will talk about some more recent work.`,
+        'University of Bayreuth, Germany'
+    ];
+
     dictSpeakers['Zheng Yuan'] = [
         'Concavity property of minimal $L^2$ integrals and its applications',
         `In this talk, we recall the concavity property of minimal $L^2$ integrals related to multiplier ideal sheaves. As applications, we recall a characterization for the holding of the equality in optimal jets $L^2$ extension problem on open Riemann surfaces, eﬀectiveness of strong openness property in $L^p$ , an optimal uniform support function related to the strong openness property and a twisted version of strong openness property in $L^p$ . This talk is based on joint works with Qi’an Guan and a joint work with Qi’an Guan and Zhitong Mi.`,
@@ -271,6 +279,12 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
                 $(id)[0].innerText = ("0"+String(hours)).slice(-2)+$(id)[0].innerText.slice(-3);
             }    
         }
+
+        $(".talktime").each(function() {
+            timeref = Number($(this).attr('ref'));
+            hours = timeref + Number(value) + add;
+            $(this)[0].innerText = ("0"+String(hours)).slice(-2)+$(this)[0].innerText.slice(-3);
+        });
     }
     window.onload = function(){
         timesetting("9");
@@ -280,7 +294,11 @@ moderate measures in the sense of Dinh-Nguyen-Sibony.</p>
                 // var speaker = $(this)[0].innerText;
                 var speaker = $(this).attr('speaker');
                 $('.modal .speaker')[0].innerText = 'Speaker : ' + speaker + ' (' + dictSpeakers[speaker][2] + ')';
-                //$('.modal p')[0].innerText = 'Time : ' + $(this).parent().siblings()[0].innerText;
+                // if ($(this).children('.stime').length > 0) {
+                //     $('.modal .time')[0].innerText = 'Time : ' + $(this).children(".stime")[0].innerText;
+                // } else {
+                //     $('.modal .time')[0].innerText = 'Time : ' + $(this).parent().siblings()[0].innerText;
+                // }
                 $('.modal .title')[0].innerText = 'Title : ' + dictSpeakers[speaker][0];
                 $('.modal .abstract')[0].innerText = 'Abstract : ' + dictSpeakers[speaker][1];
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub, "modal"]);
