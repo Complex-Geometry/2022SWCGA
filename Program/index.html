@@ -454,6 +454,7 @@ html {
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: inline-block;
+    visibility: hidden;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -481,6 +482,7 @@ html {
 .modal.open {
     z-index: 1000;
     opacity: 1;
+    visibility: visible;
     filter: alpha(opacity=100);
 
     -ms-transform: scale(1); /* IE 9 */
